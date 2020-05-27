@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+CONF_DIR=~/.config
+
+cat "$CONF_DIR/i3/i3.conf" > "$CONF_DIR/i3/config"
+cat "$CONF_DIR/i3/sway.conf" > "$CONF_DIR/sway/config"
+
+cat "$CONF_DIR/i3/common.conf" >> "$CONF_DIR/i3/config"
+cat "$CONF_DIR/i3/common.conf" >> "$CONF_DIR/sway/config"
