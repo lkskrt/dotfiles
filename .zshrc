@@ -18,6 +18,7 @@ antigen use oh-my-zsh
 
 #antigen theme agnoster
 #antigen theme sorin
+export TERM=xterm-256color
 export SPACESHIP_BATTERY_SHOW=false
 export SPACESHIP_PHP_SHOW=false
 export SPACESHIP_KUBECTL_SHOW=true
@@ -40,11 +41,12 @@ antigen apply
 export EDITOR="vim"
 export VISUAL="vim"
 
-source /bin/aws_zsh_completer.sh
+if [[ -a /bin/aws_zsh_completer.sh ]]; then
+  . /bin/aws_zsh_completer.sh
+fi
 
 alias ll='ls -lah'
 alias l='ll'
-alias ssh='TERM=xterm-256color ssh'
 
 alias d='docker'
 alias dc='docker-compose'

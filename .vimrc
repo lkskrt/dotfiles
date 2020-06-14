@@ -68,7 +68,7 @@ let g:jsx_ext_required = 0
 let g:vimtex_view_method = 'mupdf'
 "let g:vimtex_compiler_latexmk = {'callback' : 0}
 let NERDTreeRespectWildIgnore = 1
-if empty(v:servername) && exists('*remote_startserver')
+if has('clientserver') && empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
 
