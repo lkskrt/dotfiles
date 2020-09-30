@@ -18,7 +18,6 @@ antigen use oh-my-zsh
 
 #antigen theme agnoster
 #antigen theme sorin
-export TERM=xterm-256color
 export SPACESHIP_BATTERY_SHOW=false
 export SPACESHIP_PHP_SHOW=false
 export SPACESHIP_KUBECTL_SHOW=true
@@ -38,7 +37,9 @@ bindkey '^ ' autosuggest-accept
 
 antigen apply
 
+export AWS_SDK_LOAD_CONFIG=1
 export EDITOR="vim"
+export TERM=xterm-256color
 export VISUAL="vim"
 
 if [[ -a /bin/aws_zsh_completer.sh ]]; then
@@ -52,6 +53,7 @@ alias d='docker'
 alias dc='docker-compose'
 
 alias tf='terraform'
+alias tfg='terraform graph | dot -Tsvg > graph.svg'
 alias tfp='terraform plan'
 alias tfa='terraform apply'
 
@@ -83,3 +85,5 @@ alias kgs='kubectl get secret'
 alias kgsvc='kubectl get service'
 
 alias kl='kubectl logs'
+alias kgr='kubectl describe nodes | grep -A 9 -e "^Allocated resources"'
+alias kgnp='kubectl describe nodes | grep -e "^Non-terminated Pods"'
