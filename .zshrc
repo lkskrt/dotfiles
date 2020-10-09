@@ -16,7 +16,7 @@ zstyle ':completion:*' rehash true
 if [[ -a /usr/share/zsh/share/antigen.zsh ]]; then
   # Arch
   . /usr/share/zsh/share/antigen.zsh
-elif [[ -a /usr/share/zsh/share/antigen.zsh ]]; then
+elif [[ -a /usr/share/zsh-antigen/antigen.zsh ]]; then
   # Debian
   . /usr/share/zsh-antigen/antigen.zsh
 else
