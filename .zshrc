@@ -12,7 +12,16 @@ zstyle :compinstall filename '/home/lukas/.zshrc'
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
 
-source /usr/share/zsh/share/antigen.zsh
+
+if [[ -a /usr/share/zsh/share/antigen.zsh ]]; then
+  # Arch
+  . /usr/share/zsh/share/antigen.zsh
+elif [[ -a /usr/share/zsh/share/antigen.zsh ]]; then
+  # Debian
+  . /usr/share/zsh-antigen/antigen.zsh
+else
+  echo 'Could not source antigen!'
+fi
 
 antigen use oh-my-zsh
 
