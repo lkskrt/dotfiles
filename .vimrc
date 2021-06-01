@@ -5,21 +5,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'lervag/vimtex'
   Plug 'itchyny/lightline.vim'
   Plug 'dracula/vim', { 'as': 'dracula' }
-
-  " New
+  Plug 'bkad/CamelCaseMotion'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'mhinz/vim-signify'
-
-  " PHP
-  Plug 'StanAngeloff/php.vim'
-  Plug 'stephpy/vim-php-cs-fixer'
-  Plug 'phpactor/phpactor'
-
-  " JS
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'leafgarland/typescript-vim'
+  Plug 'dag/vim-fish'
 call plug#end()
 
 
@@ -41,7 +34,7 @@ filetype indent on
 let mapleader = ' '
 let maplocalleader = ','
 map <C-p> :Files<CR>
-map <C-o> :NERDTreeToggle<CR>
+map <C-t> :NERDTreeToggle<CR>
 nmap <leader>v :tabedit $MYVIMRC<CR>
 nmap <leader>s :w<CR>
 inoremap <C-@> <C-x><C-o>
@@ -49,6 +42,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+let g:camelcasemotion_key = '<localleader>'
 
 " Source the vimrc file after saving it
 if has('autocmd')

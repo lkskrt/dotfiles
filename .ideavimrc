@@ -7,4 +7,16 @@ vnoremap gcc :action CommentByLineComment<cr>
 let mapleader = ' '
 let maplocalleader = ','
 
+nmap ,r :source '~/.ideavimrc'<CR>
+nmap ,w [w
+nmap ,W [W
+nmap ,b [b
+nmap ,B [B
+
+nmap <leader>h :action Back<cr>
+nmap <leader>l :action Forward<cr>
+nmap <leader>g :action GotoDeclaration<cr>
+nmap <leader>u :action FindUsages<cr>
+nmap <leader>c :action GotoClass<cr>
+
 nmap <leader>s :w<CR>

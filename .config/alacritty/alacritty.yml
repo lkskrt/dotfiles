@@ -1,0 +1,16 @@
+font:
+  normal:
+    family: IBM Plex Mono
+  bold:
+    style: Bold
+  italic:
+    style: Italic
+  bold_italic:
+    style: Bold Italic
+  size: 10
+
+import:
+- ~/.config/alacritty/dracula.yml
+
+env:
+  WINIT_X11_SCALE_FACTOR: '1'

@@ -24,16 +24,6 @@ else
 fi
 
 antigen use oh-my-zsh
-
-#antigen theme agnoster
-#antigen theme sorin
-export SPACESHIP_BATTERY_SHOW=false
-export SPACESHIP_PHP_SHOW=false
-export SPACESHIP_KUBECTL_SHOW=true
-export SPACESHIP_KUBECTL_VERSION_SHOW=false
-export SPACESHIP_EXIT_CODE_SHOW=true
-antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
-
 antigen bundle docker
 antigen bundle command-not-found
 # antigen bundle vi-mode
@@ -45,6 +35,8 @@ bindkey '^ ' autosuggest-accept
 #antigen bundle zsh-users/zsh-syntax-highlighting
 
 antigen apply
+
+eval "$(starship init zsh)"
 
 export AWS_SDK_LOAD_CONFIG=1
 export EDITOR="vim"
