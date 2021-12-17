@@ -3,3 +3,6 @@ disabled=true
 
 [kubernetes]
 #disabled=false
+
+[docker_context]
+disabled=true
