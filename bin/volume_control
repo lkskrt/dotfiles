@@ -1,0 +1,31 @@
+#!/usr/bin/env fish
+
+set msgID 19872345
+set timeout 1000
+set step 2
+set urgency low
+set icon audio-volume-low
+
+switch $argv[1]
+    case up
+        pactl set-sink-volume @DEFAULT_SINK@ +$step%
+        set icon audio-volume-high
+    case down
+        pactl set-sink-volume @DEFAULT_SINK@ -$step%
+    case toggle
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
+    case '*'
+        echo 'Specify either up, down or toggle'
+        exit 1
+end
+
+set volume (pamixer --get-volume)
+set mute (pamixer --get-mute)
+
+if $mute
+    dunstify Muted -i audio-volume-muted -t $timeout -u $urgency -r $msgID
+else
+    dunstify Volume -i $icon -t $timeout -u $urgency -r $msgID -h int:value:$volume
+end
+
+canberra-gtk-play -i audio-volume-change

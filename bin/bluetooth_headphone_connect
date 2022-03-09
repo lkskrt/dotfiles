@@ -1,0 +1,33 @@
+#!/usr/bin/env fish
+
+set msgID 1089719283
+set icon audio-headphones
+
+set mac $argv[1]
+if test -z "$mac"
+    echo 'Specify headphone mac address'
+    exit 1
+end
+
+set underscoreMac (string replace -a : _ $mac)
+
+dunstify -i $icon -r $msgID -u low "Headphones connecting ..."
+set message (bluetoothctl connect $mac 2>&1)
+
+dunstify -i $icon -r $msgID -u low "Waiting for card to become available ..."
+sleep 3
+
+dunstify -i $icon -r $msgID -u low "Setting card profile ..."
+if test $status -eq 0
+    set message (pactl set-card-profile bluez_card.$underscoreMac a2dp-sink-aptx 2>&1)
+end
+
+dunstify -i $icon -r $msgID -u low "Setting default output ..."
+if test $status -eq 0
+    set message (pactl set-default-sink bluez_output.$underscoreMac.a2dp-sink 2>&1)
+else
+    dunstify -i $icon -r $msgID -u critical "Error connectiong headphones" $message
+    exit 1
+end
+
+dunstify -i $icon -r $msgID "Headphones connected"

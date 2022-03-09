@@ -1,0 +1,11 @@
+#!/usr/bin/env fish
+
+set msgID 213517891
+
+set dpms (xset -q | grep 'DPMS is' | awk '{ print $3 }')
+
+if test "$dpms" = Enabled
+    xset -dpms && dunstify -i caffeine-cup-full -r $msgID 'Screen suspend is disabled.'
+else
+    xset +dpms && dunstify -i caffeine-cup-empty -r $msgID 'Screen suspend is enabled.'
+end
