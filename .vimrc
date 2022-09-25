@@ -150,3 +150,7 @@ let NERDTreeRespectWildIgnore = 1
 if has('clientserver') && empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
+
+
+""" Custom File Types
+au BufRead,BufNewFile *.props setfiletype xml

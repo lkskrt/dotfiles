@@ -11,23 +11,36 @@ end
 
 set underscoreMac (string replace -a : _ $mac)
 
-dunstify -i $icon -r $msgID -u low "Headphones connecting ..."
-set message (bluetoothctl connect $mac 2>&1)
+function handle_error
+    dunstify -i $icon -r $msgID -u critical "Error connecting headphones" $message
+    exit 1
+end
 
-dunstify -i $icon -r $msgID -u low "Waiting for card to become available ..."
-sleep 3
+if not bluetoothctl info $mac | grep 'Connected: yes'
+  dunstify -i $icon -r $msgID -u low "Headphones connecting ..."
+  set message (bluetoothctl connect $mac 2>&1)
+  if test $status -ne 0
+      handle_error
+  end
+
+  dunstify -i $icon -r $msgID -u low "Waiting for card to become available ..."
+  sleep 3
+end
 
 dunstify -i $icon -r $msgID -u low "Setting card profile ..."
-if test $status -eq 0
-    set message (pactl set-card-profile bluez_card.$underscoreMac a2dp-sink-aptx 2>&1)
+# Try aptx first
+if not pactl set-card-profile bluez_card.$underscoreMac a2dp-sink-aptx
+    # Fallback to aac
+    set message (pactl set-card-profile bluez_card.$underscoreMac a2dp-sink-aac 2>&1)
+    if test $status -ne 0
+        handle_error
+    end
 end
 
 dunstify -i $icon -r $msgID -u low "Setting default output ..."
-if test $status -eq 0
-    set message (pactl set-default-sink bluez_output.$underscoreMac.a2dp-sink 2>&1)
-else
-    dunstify -i $icon -r $msgID -u critical "Error connectiong headphones" $message
-    exit 1
+set message (pactl set-default-sink bluez_output.$underscoreMac.a2dp-sink 2>&1)
+if test $status -ne 0
+    handle_error
 end
 
 dunstify -i $icon -r $msgID "Headphones connected"

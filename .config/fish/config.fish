@@ -25,7 +25,9 @@ abbr -a tf terraform
 abbr -a k kubectl
 
 if test -n "$DESKTOP_SESSION"
-    set -x (gnome-keyring-daemon --start | string split "=")
+    for env_var in (gnome-keyring-daemon --start);
+        set -x (echo $env_var | string split "=")
+    end
 end
 
 # AWS CLI completions: https://github.com/aws/aws-cli/issues/1079#issuecomment-252947755
@@ -33,6 +35,8 @@ type -q aws_completer; and complete --command aws --no-files --arguments '(begin
 
 if test "$USER" != 'root'; and test "$hostname" = 'lukas-laptop'
     set -x DOCKER_HOST "unix://$XDG_RUNTIME_DIR/podman/podman.sock"
+    # https://github.com/containers/podman/issues/13889#issuecomment-1112454604
+    set -x DOCKER_BUILDKIT 0
     alias docker podman
 end
 

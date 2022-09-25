@@ -1,5 +1,6 @@
 set clipboard+=unnamed
 set ignorecase smartcase incsearch " ignore case only when searching lowercase, search while typing
+set ideajoin " https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
 
 nnoremap gcc :action CommentByLineComment<cr>
 vnoremap gcc :action CommentByLineComment<cr>
