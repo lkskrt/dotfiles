@@ -2,12 +2,35 @@
 
 ## Setup
 
-```zsh
+### Dotfiles Only
+
+```shell
 cd ~
 git clone git@github.com:lkskrt/dotfiles.git
-# Use zsh for this to work
-mv dotfiles/*(D) .
-rmdir dotfiles
+cp -r dotfiles/* dotfiles/.* .
+rm -rf dotfiles
+```
+
+### Whole System
+
+To install Arch on a new system boot into Arch ISO and first download the repo:
+```shell
+git clone https://github.com/lkskrt/dotfiles.git
+```
+
+Install fish:
+```shell
+pacman -Sy fish
+```
+
+Then execute the bootstrap script:
+```shell
+dotfiles/bin/setup/bootstrap_arch.fish TARGET_DEVICE EFI_SYSTEM_PARTITION_DEVICE
+```
+
+The system should now be ready to boot Arch from the target device. Reboot, login and finish setup by executing:
+```shell
+dotfiles/bin/setup/configure_arch.fish
 ```
 
 ## i3 & sway
