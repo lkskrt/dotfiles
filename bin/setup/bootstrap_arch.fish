@@ -129,7 +129,7 @@ if test $step -le 1
         iputils \
         networkmanager \
         ufw \
-        vim
+        gvim
 end
 
 if not grep -q btrfs $mountPath/etc/fstab
@@ -199,7 +199,7 @@ arch-chroot $mountPath systemctl enable NetworkManager
 
 read -l -P 'Enter username:' username
 if not test -e $mountPath/home/$username
-    arch-chroot $mountPath useradd -m -G wheel -s /usr/bin/fish $username
+    arch-chroot $mountPath useradd -m -G wheel,video -s /usr/bin/fish $username
     arch-chroot $mountPath passwd $username
     echo "Set root passwd:"
     arch-chroot $mountPath passwd root
