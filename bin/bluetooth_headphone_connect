@@ -38,7 +38,7 @@ if not pactl set-card-profile bluez_card.$underscoreMac a2dp-sink-aptx
 end
 
 dunstify -i $icon -r $msgID -u low "Setting default output ..."
-set message (pactl set-default-sink bluez_output.$underscoreMac.a2dp-sink 2>&1)
+set message (pactl set-default-sink bluez_output.$underscoreMac.1 2>&1)
 if test $status -ne 0
     handle_error
 end

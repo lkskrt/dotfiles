@@ -24,7 +24,7 @@ abbr -a p podman
 abbr -a tf terraform
 abbr -a k kubectl
 
-if test -n "$DESKTOP_SESSION" && test -z "$GNOME_KEYRING_CONTROL"
+if test -n "$DESKTOP_SESSION" && test -z "$GNOME_KEYRING_CONTROL" && status is-interactive
     for env_var in (gnome-keyring-daemon --start);
         set -x (echo $env_var | string split "=")
     end
