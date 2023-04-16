@@ -1,0 +1,22 @@
+#!/usr/bin/env fish
+
+set msgID 2750785
+set timeout 1000
+set step 10
+set urgency low
+set icon display-brightness-low-symbolic
+
+switch $argv[1]
+    case up
+        light -A $step
+        set icon display-brightness-high-symbolic
+    case down
+        light -U $step
+    case '*'
+        echo 'Specify either up or down'
+        exit 1
+end
+
+set brightness (light)
+
+dunstify Brightness -i $icon -t $timeout -u $urgency -r $msgID -h int:value:$brightness

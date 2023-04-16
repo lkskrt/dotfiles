@@ -33,10 +33,15 @@ end
 # AWS CLI completions: https://github.com/aws/aws-cli/issues/1079#issuecomment-252947755
 type -q aws_completer; and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
-if test "$USER" != 'root'; and test "$hostname" = 'lukas-laptop'
+if test "$USER" != 'root'; and test "$hostname" = 'lukas-t14s'
     set -x DOCKER_HOST "unix://$XDG_RUNTIME_DIR/podman/podman.sock"
     # https://github.com/containers/podman/issues/13889#issuecomment-1112454604
     set -x DOCKER_BUILDKIT 0
     alias docker podman
 end
 
+
+# pnpm
+set -gx PNPM_HOME "/home/lukas/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end

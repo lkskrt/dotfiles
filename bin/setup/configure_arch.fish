@@ -77,7 +77,9 @@ if contains -- -i $argv
         traceroute \
         ttf-ibm-plex \
         vlc \
-        xautolock
+        wget \
+        xautolock \
+        xdotool
 end
 
 if contains -- --aur $argv
@@ -171,6 +173,12 @@ if not test -e ~/.git
     rm -rf dotfiles
 
     fisher update
+end
+
+if not test -e /etc/lightdm/slick-greeter.conf
+    echo "[Greeter]
+background=/etc/lightdm/background.png" | sudo tee -a /etc/lightdm/slick-greeter.conf
+    sudo cp ~/Pictures/wallpaper.png /etc/lightdm/background.png
 end
 
 if not test -e ~/.config/i3/config
