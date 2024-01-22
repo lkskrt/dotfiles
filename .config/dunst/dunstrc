@@ -438,4 +438,5 @@
 
 [spotify]
     appname = "Spotify"
-    timeout = 3
+    #timeout = 3
+    skip_display = true

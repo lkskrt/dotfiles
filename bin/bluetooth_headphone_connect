@@ -12,7 +12,7 @@ end
 # E.g. a2dp-sink-aac, headset-head-unit
 set cardProfile $argv[2]
 if test -z "$cardProfile"
-    set cardProfile "a2dp-sink-aptx"
+    set cardProfile "a2dp-sink"
 end
 
 set underscoreMac (string replace -a : _ $mac)

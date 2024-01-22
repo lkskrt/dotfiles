@@ -12,6 +12,8 @@ if contains -- -i $argv
         bind \
         cups \
         dunst \
+        # PDF viewer
+        evince \
         fisher \
         firefox \
         gnome-calculator \

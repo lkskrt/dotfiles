@@ -2,7 +2,9 @@
 disabled=true
 
 [kubernetes]
-#disabled=false
+disabled=false
+detect_files=["helmfile.yaml"]
+detect_folders=["helm", "chart"]
 
 [docker_context]
 disabled=true
