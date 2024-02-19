@@ -167,11 +167,13 @@ if not test -e $mountPath$keymapCustomPath
 end
 
 if not test -e $mountPath/etc/hostname
-    read -l -P 'Enter hostname:' hostname
-    echo $hostname >$mountPath/etc/hostname
+    read -l -P 'Enter hostname:' name
+    echo $name >$mountPath/etc/hostname
 end
 
 if not test -e $mountPath/boot/loader/entries/arch.conf
+    bootctl install
+    mkdir $mountPath/boot/loader/entries
     set cryptdeviceUuid (blkid -s UUID -o value $device)
 
     set cpuVendor amd

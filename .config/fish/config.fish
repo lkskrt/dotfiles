@@ -19,7 +19,7 @@ fish_add_path ~/.npm-global/bin/
 abbr -a l ls -lah
 abbr -a ll l
 abbr -a d docker
-abbr -a dc docker-compose
+abbr -a --position anywhere dc docker compose
 abbr -a p podman
 abbr -a tf terraform
 abbr -a k kubectl
