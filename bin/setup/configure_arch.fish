@@ -20,6 +20,7 @@ if contains -- -i $argv
         evince \
         fisher \
         firefox \
+        fzf \
         gnome-calculator \
         gnome-font-viewer \
         gnome-keyring \
@@ -69,6 +70,7 @@ if contains -- -i $argv
         pdftk \
         pwgen \
         ranger \
+        ripgrep \
         rofi \
         rofimoji \
         snapper \
@@ -83,7 +85,8 @@ if contains -- -i $argv
         vlc \
         wget \
         xautolock \
-        xdotool
+        xdotool \
+        zoxide
 end
 
 if contains -- --aur $argv
@@ -156,7 +159,7 @@ end
 if contains -- --systemd $argv
     echo "Enable systemd units"
     sudo systemctl enable lightdm sshd bluetooth systemd-boot-update
-    systemctl enable --user pipewire-pulse
+    systemctl enable --user pipewire-pulse gcr-ssh-agent.socket
 end
 
 if contains -- --ufw $argv

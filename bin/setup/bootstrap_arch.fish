@@ -98,10 +98,7 @@ set swapFile $mountPath/swap/file
 if not test -e $swapFile
     echo "Setting up swap file"
     # https://wiki.archlinux.org/title/Btrfs#Swap_file
-    chattr +C $mountPath/swap
-    dd if=/dev/zero of=$swapFile bs=1M count=4096 status=progress
-    chmod 0600 $swapFile
-    mkswap -U clear $swapFile
+    btrfs filesystem mkswapfile --size 16g --uuid clear $mountPath/swap/file
 end
 swapon $swapFile
 
