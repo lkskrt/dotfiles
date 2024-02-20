@@ -10,7 +10,11 @@ if contains -- -i $argv
         alsa-utils \
         # DNS utils
         bind \
+        # control display brightness, user must be in video group
+        brightnessctl \
         cups \
+        docker \
+        docker-compose \
         dunst \
         # PDF viewer
         evince \
@@ -36,8 +40,6 @@ if contains -- -i $argv
         keepassxc \
         kubectl \
         libreoffice-fresh \
-        # control display brightness, user must be in video group
-        light \
         lightdm \
         lightdm-slick-greeter \
         # manage GTK themes
@@ -89,14 +91,12 @@ if contains -- --aur $argv
     yay -S --needed \
         dracula-gtk-theme \
         dracula-icons-git \
-        g810-led-git \
         google-chrome \
         i3blocks-contrib-git \
         keybase-bin \
         krew-bin \
         powerline-fonts-git \
         spotify \
-        teamviewer \
         vim-plug \
         visual-studio-code-bin \
         zoom
@@ -151,7 +151,6 @@ end
 if grep -q '#Color' /etc/pacman.conf
     echo "Enabling pacman color output"
     sudo sed -i 's/#Color/Color/' /etc/pacman.conf
-    sudo systemctl restart sshd
 end
 
 if contains -- --systemd $argv
@@ -188,35 +187,3 @@ if not test -e ~/.config/i3/config
     ~/.config/i3/build
 end
 
-if not grep -iq custom /etc/g810-led/profile
-    echo "Configuring keyboard backlight"
-    echo -n "# Custom Key Profile
-# See: https://github.com/MatMoul/g810-led
-
-a 000000
-k h FFFFFF
-k j FFFFFF
-k k FFFFFF
-k l FFFFFF
-k alt_left FFFFFF
-
-k 1 111111
-k 2 111111
-k 3 111111
-k 4 111111
-k 5 111111
-k 6 111111
-k 7 666666
-k 8 666666
-k 9 666666
-k 0 666666
-
-g indicators ffffff
-g multimedia ffffff
-g fkeys 111111
-
-c
-" > /tmp/profile
-    sudo  mv /tmp/profile /etc/g810-led/
-    g810-led -p /etc/g810-led/profile
-end
