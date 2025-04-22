@@ -1,0 +1,24 @@
+#!/usr/bin/env fish
+
+set msgID 6883070
+set timeout 1500
+set urgency low
+set icon audio-volume-muted
+
+set win (xdotool search --limit 1 --name 'Meet -')
+if test -n "$win"
+  xdotool windowactivate $win && sleep 0.2 && xdotool key --window $win 'ctrl+d'
+  dunstify 'Toggled mute for Google Meet' -i $icon -t $timeout -u $urgency -r $msgID
+
+  exit 0
+end
+
+set win (xdotool search --limit 1 --name 'Meeting')
+if test -n "$win"
+  xdotool windowactivate $win && sleep 0.2 && xdotool key --window $win 'alt+a'
+  dunstify 'Toggled mute for Zoom' -i $icon -t $timeout -u $urgency -r $msgID
+
+  exit 0
+end
+
+dunstify 'No active meeting found' -t $timeout -u $urgency -r $msgID

@@ -2,7 +2,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'bkad/CamelCaseMotion'
   Plug 'inkch/vim-fish'
   Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'editorconfig/editorconfig-vim'
+  " Plug 'editorconfig/editorconfig-vim'
   Plug 'itchyny/lightline.vim'
   Plug 'jparise/vim-graphql'
   Plug 'junegunn/fzf.vim'

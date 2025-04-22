@@ -1,7 +1,7 @@
 fish_vi_key_bindings
 function fish_user_key_bindings
     for mode in insert default visual
-        bind -M $mode -k nul forward-char
+        bind -M $mode ctrl-space accept-autosuggestion
     end
 end
 
@@ -27,6 +27,22 @@ abbr -a --position anywhere dc docker compose
 abbr -a p podman
 abbr -a tf terraform
 abbr -a k kubectl
+
+abbr -a g git
+abbr -a ga git add
+abbr -a gau git add -u
+abbr -a gaa git add -A
+abbr -a gc git commit
+abbr -a gd git diff
+abbr -a gdc git diff --cached
+abbr -a gl git log
+abbr -a gm git merge
+abbr -a gp git pull
+abbr -a gpu git push
+abbr -a gr git restore
+abbr -a gs git status
+abbr -a gst git stash
+abbr -a gsw git switch
 
 # AWS CLI completions: https://github.com/aws/aws-cli/issues/1079#issuecomment-252947755
 type -q aws_completer; and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'

@@ -1,11 +1,12 @@
 [user]
   email = lukas@korte.me
   name = Lukas Korte
-  signingkey = 90EF31D4E2652AF2CD9E1A414AAE2A30F19F1B9E
-; [gpg]
-;   program = gpg
-; [commit]
-;   gpgSign = true
+  signingkey = ~/.ssh/id_ed25519.pub
+[gpg]
+  format = ssh
+  ; program = gpg
+[commit]
+  gpgSign = true
 [tag]
   forceSignAnnotated = true
   gpgSign = true
